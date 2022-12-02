@@ -111,7 +111,8 @@ class Swimming(Training):
 
     def get_spent_calories(self) -> float:
         return ((self.get_mean_speed() + self.QUOTIENT_1)
-                * self.CALORIES_WEIGHT_MULTIPLIER  * self.weight * self.duration)
+                * self.CALORIES_WEIGHT_MULTIPLIER
+                * self.weight * self.duration)
 
     def get_mean_speed(self) -> float:
         return (self.length_pool * self.count_pool
@@ -128,7 +129,7 @@ def read_package(workout_type: str, data: int):
     return training_type[workout_type](*data)
 
 
-def main(training: Training) -> None:
+def main(training: Training) -> str:
     """Главная функция."""
     info: InfoMessage = training.show_training_info()
     print(info.get_message())
