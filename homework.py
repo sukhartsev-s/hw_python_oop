@@ -72,8 +72,8 @@ class Running(Training):
 
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
-    COEFFICIENT_1 = 0.035
-    CALORIES_WEIGHT_MULTIPLIER = 0.029
+    COEFFICIENT_1 = 0.029
+    CALORIES_WEIGHT_MULTIPLIER = 0.035
 
     def __init__(self,
                  action: int,
@@ -131,7 +131,7 @@ def read_package(workout_type: str, data: int):
 
 def main(training: Training) -> str:
     """Главная функция."""
-    info: InfoMessage = training.show_training_info()
+    info = training.show_training_info()
     print(info.get_message())
 
 
