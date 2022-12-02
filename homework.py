@@ -67,7 +67,6 @@ class Running(Training):
 
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
-
     VALUE_1 = 0.035
     VALUE_2 = 0.029
 
