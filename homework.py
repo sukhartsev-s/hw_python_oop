@@ -74,7 +74,7 @@ class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
     CALORIES_SPEED_HEIGHT_MULTIPLIER = 0.029
     CALORIES_WEIGHT_MULTIPLIER = 0.035
-    KMH_IN_MSEC = 60
+    KMH_IN_MSEC = 0.278
 
     def __init__(self,
                  action: int,
