@@ -74,6 +74,7 @@ class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
     CALORIES_SPEED_HEIGHT_MULTIPLIER = 0.029
     CALORIES_WEIGHT_MULTIPLIER = 0.035
+    KMH_IN_MSEC = 60
 
     def __init__(self,
                  action: int,
@@ -85,16 +86,17 @@ class SportsWalking(Training):
         self.height = height
 
     def get_spent_calories(self) -> float:
-        return (((self.CALORIES_WEIGHT_MULTIPLIER
-                * self.weight + (self.get_mean_speed()**2 / self.height)
-                * self.CALORIES_SPEED_HEIGHT_MULTIPLIER
-                * self.weight) * (self.duration * self.MIN_IN_H)))
+        return ((self.CALORIES_WEIGHT_MULTIPLIER * self.weight
+                + ((((self.get_mean_speed() / self.KMH_IN_MSEC) ** 2)
+                 / self.height)
+                 * self.CALORIES_SPEED_HEIGHT_MULTIPLIER
+                 * self.weight) * (self.duration * self.MIN_IN_H)))
 
 
 class Swimming(Training):
     """Тренировка: плавание."""
     LEN_STEP = 1.38
-    QUOTIENT_1 = 1.1
+    CALORIES_ADDITIONAL_MEAN_SPEED = 1.1
     CALORIES_WEIGHT_MULTIPLIER = 2
 
     def __init__(self,
@@ -110,7 +112,7 @@ class Swimming(Training):
         self.count_pool = count_pool
 
     def get_spent_calories(self) -> float:
-        return ((self.get_mean_speed() + self.QUOTIENT_1)
+        return ((self.get_mean_speed() + self.CALORIES_ADDITIONAL_MEAN_SPEED)
                 * self.CALORIES_WEIGHT_MULTIPLIER
                 * self.weight * self.duration)
 
@@ -132,7 +134,7 @@ def read_package(workout_type: str, data: int):
 def main(training: Training) -> InfoMessage:
     """Главная функция."""
     info: InfoMessage = training.show_training_info()
-    print(info.get_message())
+    print(str(info.get_message()))
 
 
 if __name__ == '__main__':
