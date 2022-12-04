@@ -1,4 +1,4 @@
-from typing import List, Dict, ClassVar
+from typing import List, Dict, ClassVar, Type
 
 
 class InfoMessage:
@@ -119,7 +119,7 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: List[int]) -> Training:
     """Прочитать данные полученные от датчиков."""
-    training_type: Dict[str, Training] = {
+    training_type: Dict[str, Type[Training]] = {
         'SWM': Swimming,
         'RUN': Running,
         'WLK': SportsWalking
